@@ -1,4 +1,5 @@
 import React from 'react';
+import HomePage from './HomePage.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -8,7 +9,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <h2>This is a new MVP marketplace app</h2>
+      <HomePage />
     )
   }
 }
