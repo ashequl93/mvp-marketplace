@@ -15,6 +15,11 @@ const styles = theme => ({
 class AppBar extends React.Component {
   constructor(props) {
     super(props);
+    this.handleLogoClick = this.handleLogoClick.bind(this);
+  }
+
+  handleLogoClick(){
+    window.location.href = '/'
   }
 
   render() {
@@ -22,7 +27,7 @@ class AppBar extends React.Component {
     return (
       <Grid container justifyContent="space-between">
         <Grid item>
-          <Typography variant="h4" component="h2">
+          <Typography variant="h4" component="h2" onClick={this.handleLogoClick}>
               Logo
           </Typography>
         </Grid>
@@ -41,7 +46,7 @@ class AppBar extends React.Component {
           />
         </Grid>
         <Grid item>
-          <Grid container>
+          <Grid container alignItems="center">
             <Grid item>
               <Typography>
                 Mario
