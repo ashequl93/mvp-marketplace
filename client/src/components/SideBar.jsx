@@ -17,7 +17,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
-
+import { Link, Redirect } from 'react-router-dom';
 
 const styles = (theme) => ({
   uploadBtn: {
@@ -33,8 +33,13 @@ const styles = (theme) => ({
 class SideBar extends React.Component {
   constructor(props) {
     super(props);
+    this.handleCategoryChoice = this.handleCategoryChoice.bind(this);
+  }
+  handleCategoryChoice(e) {
+    window.location.href = e.target.textContent;
   }
   render() {
+    const ICON_SIZE = '40px';
     const { classes } = this.props;
     const categories = [
       'Vehicles',
@@ -48,19 +53,18 @@ class SideBar extends React.Component {
       'Pet Supplies',
     ];
     const categoryIcons = {
-      'Vehicles': <LocalTaxiOutlinedIcon />,
-      'Property Rentals': <HomeOutlinedIcon />,
-      'Family': <FavoriteBorderOutlinedIcon />,
-      'Electronics': <PhoneAndroidOutlinedIcon />,
-      'Hobbies': <BorderColorOutlinedIcon />,
-      'Home Improvement Supply': <BuildOutlinedIcon />,
-      'Toys & Games': <ToysOutlinedIcon />,
-      'Sporting Goods': <DirectionsRunOutlinedIcon />,
-      'Pet Supplies': <PetsOutlinedIcon />
+      'Vehicles': <LocalTaxiOutlinedIcon style={{fontSize: ICON_SIZE}} />,
+      'Property Rentals': <HomeOutlinedIcon style={{fontSize: ICON_SIZE}} />,
+      'Family': <FavoriteBorderOutlinedIcon style={{fontSize: ICON_SIZE}} />,
+      'Electronics': <PhoneAndroidOutlinedIcon style={{fontSize: ICON_SIZE}} />,
+      'Hobbies': <BorderColorOutlinedIcon  style={{fontSize: ICON_SIZE}} />,
+      'Home Improvement Supply': <BuildOutlinedIcon style={{fontSize: ICON_SIZE}} />,
+      'Toys & Games': <ToysOutlinedIcon style={{fontSize: ICON_SIZE}} />,
+      'Sporting Goods': <DirectionsRunOutlinedIcon style={{fontSize: ICON_SIZE}} />,
+      'Pet Supplies': <PetsOutlinedIcon style={{fontSize: ICON_SIZE}} />
     }
     return (
       <React.Fragment>
-      <Divider />
       <Button
         variant="contained"
         color="primary"
@@ -70,7 +74,6 @@ class SideBar extends React.Component {
       >
         Upload Your Item
       </Button>
-      <Divider />
       <Typography variant="h5" className={classes.categoyLabel}>
         Categories
       </Typography>
@@ -78,7 +81,7 @@ class SideBar extends React.Component {
           {categories.map((category, index) => (
             <ListItem button key={category}>
               <ListItemIcon>{categoryIcons[category]}</ListItemIcon>
-              <ListItemText primary={<Typography variant="h6"> {category} </Typography>} />
+              <ListItemText primary={<Typography variant="h6"> {category} </Typography>} onClick={this.handleCategoryChoice}/>
             </ListItem>
           ))}
           </List>
